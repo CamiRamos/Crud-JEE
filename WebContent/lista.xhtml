@@ -1,0 +1,81 @@
+<!DOCTYPE html> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="/template/plantilla.xhtml"> 
+
+	<ui:param name="tituloPagina" value="Pagina Consulta de Lista" />
+	<ui:param name="nombrePagina" value="Consulta Lista de Usuarios" />
+	
+	<ui:define name="contenido">
+		<h:form>
+			<div class="container">
+				<div class="row">
+					<div class="input-field col s4 right">
+						<h:form class="col s6">
+					      <div class="row">
+					        <div class="input-field col s12">
+					          <h:inputText  value="#{usuarioBean.miPersonaVo.documento}"/>
+					          <label for="icon_prefix2">Documento</label>
+					        </div>
+					        <i class="material-icons prefix"><h:commandButton action="#{usuarioBean.consultarUsuarioTabla()}" value="search" class="material-icons no-btn"/>        </i>
+					      </div>
+					    </h:form>
+					</div>
+				</div>
+				<div class="row">
+					<h:dataTable value="#{usuarioBean.listaPersonas}" var="info" class="highlight centered responsive-table">
+						<h:column>
+								<f:facet name="header">
+									<h:outputLabel value="Documento" />
+								</f:facet>
+								<h:inputText value="#{info.documento}" rendered="#{info.editar}" />
+								<h:outputLabel value="#{info.documento}" rendered="#{not info.editar}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Nombre" />
+							</f:facet>
+							<h:inputText value="#{info.nombre}" rendered="#{info.editar}" />
+							<h:outputLabel value="#{info.nombre}" rendered="#{not info.editar}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Apellido" />
+							</f:facet>
+							<h:inputText value="#{info.apellidos}" rendered="#{info.editar}" />
+							<h:outputLabel value="#{info.apellidos}" rendered="#{not info.editar}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Edad" />
+							</f:facet>
+							<h:inputText value="#{info.edad}" rendered="#{info.editar}" />
+							<h:outputLabel value="#{info.edad}" rendered="#{not info.editar}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Profesion" />
+							</f:facet>
+							<h:inputText value="#{info.profesion}" rendered="#{info.editar}" />
+							<h:outputLabel value="#{info.profesion}" rendered="#{not info.editar}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Telefono" />
+							</f:facet>
+							<h:inputText value="#{info.telefono}" rendered="#{info.editar}" />
+							<h:outputLabel value="#{info.telefono}" rendered="#{not info.editar}"/>
+						</h:column>
+						<h:column>
+							<h:commandButton action="#{usuarioBean.eliminarUsuario(info.documento)}" value="delete_forever" class="material-icons no-btn"/>
+							<h:commandButton action="#{usuarioBean.modificarPersona(info)}" value="create" class="material-icons no-btn" rendered="#{not info.editar}"/>
+							<h:commandButton action="#{usuarioBean.guardarPersona(info)}" value="save" class="material-icons no-btn" rendered="#{info.editar}"/>
+						</h:column>
+					</h:dataTable>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

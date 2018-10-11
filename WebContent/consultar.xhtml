@@ -1,0 +1,59 @@
+<!DOCTYPE html> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="/template/plantilla.xhtml"> 
+      
+      <ui:param name="tituloPagina" value="Pagina de Consulta" />
+      <ui:param name="nombrePagina" value="Consulta" />
+      
+      <ui:define name="contenido">
+      	<h:form>
+      		<div class="container">
+	      		<div class="card-panel">
+		      		<div class="row">
+		      			<div class="input-field">
+							<h1>Consultar Usuario</h1>
+							<h:outputText value="#{usuarioBean.mensaje}" class="red-text darken-1"/>
+		      			</div>
+		      			<div class="row col s6 offset-m7">
+		      				<div class="input-field col m6">
+			   					<label for="documento">Documento</label>
+			   					<h:inputText value="#{usuarioBean.miPersonaVo.documento}" id="documento"/>
+			   				</div>
+			   				<div class="col s12 m6">
+			   					<h:commandButton action="#{usuarioBean.consultarUsuario()}" value="Consultar" class="btn btn-default orange lighten-1"/>
+			   				</div>
+		      			</div>
+		      			<div class="input-field col s12 m6">
+		      				<label for="nombre">Nombre</label>
+		      				<h:inputText value="#{usuarioBean.miPersonaVo.nombre}" id="nombre" class="validate"/>
+		      			</div>
+		      			<div class="input-field col s12 m6">
+		      				<label for="apellido">Apellido</label>
+		      				<h:inputText value="#{usuarioBean.miPersonaVo.apellidos}" id="apellido"/>
+		      			</div>
+		      			<div class="input-field col s12 m6">
+		      				<label for="edad">Edad</label>
+		      				<h:inputText value="#{usuarioBean.miPersonaVo.edad}" id="edad"/>
+		      			</div>
+		      			<div class="input-field col s12 m6">
+		      				<label for="profesion">Profesion</label>
+		      				<h:inputText value="#{usuarioBean.miPersonaVo.profesion}" id="profesion"/>
+		      			</div>
+		      			<div class="input-field col s12 m12">
+		      				<label for="telefono">Telefono</label>
+		      				<h:inputText value="#{usuarioBean.miPersonaVo.telefono}" id="telefono"/>
+		      			</div>
+		      			<div class="input-field col s12 m6">
+		      				<h:commandButton  action="#{usuarioBean.editarPersona()}" value="Modificar" class="btn btn-default orange lighten-1"/>
+		      			</div>
+		      		</div>
+	      		</div>
+	      	</div>
+      	</h:form>
+      </ui:define>
+
+
+</ui:composition>

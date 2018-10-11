@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      template="/template/plantilla.xhtml"> 
+
+	<ui:param name="tituloPagina" value="Register Page" />
+	<ui:param name="nombrePagina" value="Registrar" />
+	
+	<ui:define name="contenido">
+		<h:form>
+			<div class="container">
+				<div class="row card-panel">
+					<div class="input-field col s12 m12">
+						<h1>Registro de Usuario</h1>
+							<h:outputText value="#{usuarioBean.mensaje}" class="red-text darken-1"/>
+					</div>
+					<div class="input-field col s12 m12">
+						<label for="documento">Documento</label>
+						<h:inputText value="#{usuarioBean.miPersonaVo.documento}" id="documento"/>
+					</div>
+					<div class="input-field col s12 m6">
+						<label for="nombre">Nombres</label>
+						<h:inputText value="#{usuarioBean.miPersonaVo.nombre}" id="nombre"/>
+					</div>
+					<div class="input-field col s12 m6">
+						<label for="apellido">Apellidos</label>
+						<h:inputText value="#{usuarioBean.miPersonaVo.apellidos}" id="apellido"/>
+					</div>
+					<div class="input-field col s12 m12">
+						<label for="edad">Edad</label>
+						<h:inputText value="#{usuarioBean.miPersonaVo.edad}" id="edad"/>
+					</div>
+					<div class="input-field col s12 m6">
+						<label for="profesion">Profesion</label>
+						<h:inputText value="#{usuarioBean.miPersonaVo.profesion}" id="profesion"/>
+					</div>
+					<div class="input-field col s12 m6">
+						<label for="telefono">Telefono</label>
+						<h:inputText value="#{usuarioBean.miPersonaVo.telefono}" id="telefono"/>
+					</div>
+					<h:commandButton action="#{usuarioBean.registrarUsuario()}" value="Registrar" class="btn btn-default amber lighten-1"/>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
