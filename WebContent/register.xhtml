@@ -14,7 +14,8 @@
 				<div class="row card-panel">
 					<div class="input-field col s12 m12">
 						<h1>Registro de Usuario</h1>
-							<h:outputText value="#{usuarioBean.mensaje}" class="red-text darken-1"/>
+							<h:outputText value="#{usuarioBean.mensajeError}" class="red-text darken-1" rendered="false"/>
+							<h:outputText value="#{usuarioBean.mensajeExitoso}" class="green-text"/>
 					</div>
 					<div class="input-field col s12 m12">
 						<label for="documento">Documento</label>
@@ -40,10 +41,13 @@
 						<label for="telefono">Telefono</label>
 						<h:inputText value="#{usuarioBean.miPersonaVo.telefono}" id="telefono"/>
 					</div>
+					<div class="input-field col s12 m6">
+						<label for="pass">Contraseña</label>
+						<h:inputText value="#{usuarioBean.miPersonaVo.pass}" id="pass"/>
+					</div>
 					<h:commandButton action="#{usuarioBean.registrarUsuario()}" value="Registrar" class="btn btn-default amber lighten-1"/>
 				</div>
 			</div>
 		</h:form>
 	</ui:define>
-
 </ui:composition>

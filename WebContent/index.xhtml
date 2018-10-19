@@ -3,27 +3,42 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      template="/template/plantilla.xhtml"> 
+      template="/template/navbar.xhtml"> 
       
      <ui:param name="tituloPagina" value="Página de Inicio" />
      <ui:param name="nombrePagina" value="Inicio" />
      
      <ui:define name="contenido">
-     <h:form>
-     	<div class="container">
-     		<div class="row">
-     			<div class="col s12 m3">
-     				<h:commandButton action="register" value="Registrar" class="btn btn-default orange lighten-1"/>
-     			</div>
-     			<div class="col s12 m3">
-     				<h:commandButton action="consultar" value="Consulta Individual" class="btn btn-default orange lighten-1"/>
-     			</div>
-     			<div class="col s12 m3">
-     				<h:commandButton action="lista" actionListener="#{usuarioBean.consultarLista()}"  value="Consultar Lista de Usuarios" class="btn btn-default orange lighten-1"/>
-     			</div>  			
-     		</div>
-       	</div>
-     </h:form>
+     	<h:form>
+			<div class="container">
+				<div class="container">
+					<div class="row login">
+						<div class="card-panel col s6 offset-s3 center">
+							<div class="input-field col s12">
+								<h:graphicImage value="/resources/img/camera.png" class="img" />			
+							</div>
+							<div class="input-field col s12" style="background: #ffd180 ;">
+								<h4 class="orange-text darken-4 center">Login</h4>
+								<h:outputText value="#{loginBean.mensajeError}" class="red-text darken-1 left"/>
+							</div>
+							<div class="input-field col s12">
+								<label>User</label>
+								<h:inputText value="#{loginBean.personaVO.documento}" />
+							</div>
+							<div class="input-field col s12">
+								<label>Password</label>
+								<h:inputSecret value="#{loginBean.personaVO.pass}"/>
+							</div>
+							<h:commandButton  action="#{loginBean.validarUser()}" value="Ingresar" class="btn orange darken-2"/>
+							<div class="input-field col s12" style="background: #ffd180;">
+								<h1></h1>
+								<h:outputText value="" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+
      </ui:define>
-      
 </ui:composition>

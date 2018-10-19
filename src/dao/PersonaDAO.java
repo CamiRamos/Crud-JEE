@@ -21,7 +21,7 @@ public class PersonaDAO {
 		
 		conn = conexion.getConnection();
 		
-		consulta="INSERT INTO usuario(documento,nombre,edad,profesion,apellido,telefono) VALUES(?,?,?,?,?,?)";
+		consulta="INSERT INTO usuario(documento,nombre,edad,profesion,apellido,telefono,pass) VALUES(?,?,?,?,?,?,?)";
 		
 		try {
 			
@@ -32,6 +32,7 @@ public class PersonaDAO {
 			statement.setString(4, personaVO.getProfesion());
 			statement.setString(5, personaVO.getApellidos());
 			statement.setString(6, personaVO.getTelefono());
+			statement.setString(7, personaVO.getPass());
 			statement.execute();
 			
 			res="ok";
@@ -215,6 +216,38 @@ public class PersonaDAO {
 		}
 		
 		return listaUsuarios;
+	}
+
+	public String validarUser(String documento, String pass) {
+		Connection conn = null;
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		Conexion conexion = new Conexion();
+		
+		conn = conexion.getConnection();
+		
+		consulta = "SELECT * FROM usuario WHERE documento = ? AND pass = ?";
+		
+		try {
+			
+			statement = conn.prepareStatement(consulta);
+			statement.setString(1, documento);
+			statement.setString(2, pass);
+			result = statement.executeQuery();
+			
+			while(result.next()==true){
+				res = "existe";
+			}
+			
+			
+			conexion.desconectar();
+			
+		} catch (SQLException e) {
+			System.out.println("Usuario invalido");
+			res = "error";
+		}
+		
+		return res;
 	}
 
 }

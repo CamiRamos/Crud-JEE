@@ -1,0 +1,21 @@
+@CHARSET "ISO-8859-1";
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.login{
+	padding: 2em;
+	margin-top: 5em;
+	border-radius: 8px;
+}
+
+.img{
+	width: 6em;
+}
+
+body{
+	background: #fff3e0;
+}

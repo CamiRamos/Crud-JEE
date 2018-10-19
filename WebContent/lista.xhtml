@@ -3,13 +3,14 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"      
       template="/template/plantilla.xhtml"> 
 
 	<ui:param name="tituloPagina" value="Pagina Consulta de Lista" />
 	<ui:param name="nombrePagina" value="Consulta Lista de Usuarios" />
 	
 	<ui:define name="contenido">
-		<h:form>
+		<h:form id="form2">
 			<div class="container">
 				<div class="row">
 					<div class="input-field col s4 right">
@@ -74,8 +75,64 @@
 							<h:commandButton action="#{usuarioBean.guardarPersona(info)}" value="save" class="material-icons no-btn" rendered="#{info.editar}"/>
 						</h:column>
 					</h:dataTable>
+					<br></br>
+					<br></br>
 				</div>
 			</div>
 		</h:form>
+		<h:form id="form1">
+			<div class="container">
+				<div class="row">
+					<p:dataTable value="#{usuarioBean.listaPersonas}" var="persona">
+					<p:column headerText="Documento">
+							<p:outputLabel value="#{persona.documento}"/>
+						</p:column>
+						<p:column headerText="Nombre">
+							<p:outputLabel value="#{persona.nombre}"/>
+						</p:column>
+						<p:column headerText="Apellido">
+							<p:outputLabel value="#{persona.apellidos}" />
+						</p:column>
+						<p:column headerText="Edad">
+							<p:outputLabel value="#{persona.edad}"/>
+						</p:column>
+						<p:column headerText="Profesion">
+							<p:outputLabel value="#{persona.profesion}"/>
+						</p:column>
+						<p:column headerText="Telefono">
+							<p:outputLabel value="#{persona.telefono}"/>
+						</p:column>
+					
+						<p:column headerText="Acciones">
+							<p:commandButton icon="ui-icon-pencil" actionListener="#{usuarioBean.consultaIndividual(persona)}" oncomplete="PF('dialogDatos').show();" update=":dialogoId" class="no-btn"/>
+							<p:commandButton icon="ui-icon-close" actionListener="#{usuarioBean.eliminarUsuario(persona.documento)}" update=":form1" class="no-btn"/>
+						</p:column>
+					
+					</p:dataTable>
+				</div>
+			</div>
+		</h:form>
+		<p:dialog header="Datos" widgetVar="dialogDatos" id="dialogoId">
+			<h:form>
+				<h:panelGrid columns="2">
+				<p:outputLabel value="Documento" />
+					<p:inputText value="#{usuarioBean.miPersonaVo.documento}" />
+					<p:outputLabel value="Nombre" />
+					<p:inputText value="#{usuarioBean.miPersonaVo.nombre}" />
+					<p:outputLabel value="Apellido" />
+					<p:inputText value="#{usuarioBean.miPersonaVo.apellidos}" />
+					<p:outputLabel value="Edad" />
+					<p:inputText value="#{usuarioBean.miPersonaVo.edad}" />
+					<p:outputLabel value="Profesion" />
+					<p:inputText value="#{usuarioBean.miPersonaVo.profesion}" />
+					<p:outputLabel value="Telefono" />
+					<p:inputText value="#{usuarioBean.miPersonaVo.telefono}" />
+				</h:panelGrid>
+				<br></br>
+				<p:commandButton value="Modificar" actionListener="#{usuarioBean.editarPersona()}" oncomplete="PF('dialogDatos').hide();" update=":form1"/>
+				<p:commandButton value="Cancelar" inmediate="true" oncomplete="PF('dialogDatos').hide();"/>
+				
+			</h:form>
+		</p:dialog>
 	</ui:define>
 </ui:composition>

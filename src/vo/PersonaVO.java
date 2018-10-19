@@ -7,7 +7,7 @@ import dao.PersonaDAO;
 
 @ManagedBean
 public class PersonaVO {
-	private String nombre, apellidos, telefono, profesion, resultado, documento;
+	private String nombre, apellidos, telefono, profesion, resultado, documento,pass;
 	private int edad;
 	PersonaVO personaVO;
 	PersonaDAO personaDAO;
@@ -79,6 +79,14 @@ public class PersonaVO {
 
 	public void setEditar(boolean editar) {
 		this.editar = editar;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 

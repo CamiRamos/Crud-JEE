@@ -15,7 +15,7 @@ public class UsuarioBean {
 	
 	private PersonaVO miPersonaVo;
 	PersonaDAO miPersonaDao;
-	private String mensaje;
+	private String mensajeError, mensajeExitoso;
 	private ArrayList<PersonaVO> listaPersonas;
 	private ArrayList<String> documentos;
 	
@@ -31,10 +31,10 @@ public class UsuarioBean {
 		listaPersonas.add(miPersonaVo);
 		String res = miPersonaDao.registrarPersona(miPersonaVo);
 		if(res.equals("ok")) {
-			setMensaje("Registro exitoso");
+			setMensajeExitoso("Registro exitoso");
 			miPersonaVo = new PersonaVO();
 		}else {
-			setMensaje("No se registro la persona");
+			setMensajeError("No se registro la persona");
 		}
 	}
 	
@@ -42,12 +42,23 @@ public class UsuarioBean {
 		System.out.println("Consulta de Usuario: "+miPersonaVo.getDocumento());
 		miPersonaVo=miPersonaDao.consultarUsuario(miPersonaVo.getDocumento());
 		if (miPersonaVo!=null) {
-			setMensaje("");
+			
 		}else{
-			setMensaje("No se encuentra la persona");
+			setMensajeError("No se encuentra la persona");
 			miPersonaVo=new PersonaVO();
 		}
 	}
+	
+	public void consultaIndividual(PersonaVO personaVO){
+		PersonaVO mipersonaVO;
+		
+		mipersonaVO = miPersonaDao.consultarUsuario(personaVO.getDocumento());
+		if(mipersonaVO!=null){
+			this.miPersonaVo = mipersonaVO;
+		}
+		
+	}
+	
 	
 	public void consultarUsuarioTabla(){
 		setListaPersonas(miPersonaDao.consultarUsuarioTabla(miPersonaVo.getDocumento()));
@@ -63,18 +74,18 @@ public class UsuarioBean {
 		if(res.equals("ok")) {
 			consultarLista();			
 		}else {
-			setMensaje("No se elimino el usuario");
+			setMensajeError("No se elimino el usuario");
 		}
 	}
 	
 	public void editarPersona(){
 		String res = miPersonaDao.editarPersona(miPersonaVo);
 		if(res.equals("ok")){
-			setMensaje("Actualizacion Exitosa");
+			setMensajeExitoso("Actualizacion Exitosa");
 			miPersonaVo = new PersonaVO();
 			consultarLista();
 		}else{
-			setMensaje("No se realizo la modificacion");
+			setMensajeError("No se realizo la modificacion");
 		}
 	}
 	
@@ -91,6 +102,12 @@ public class UsuarioBean {
 		}
 	}
 	
+	public void resetearMensajes(){
+		setMensajeError("");
+		setMensajeExitoso("");
+		miPersonaVo = new PersonaVO();
+	}
+	
 	public PersonaVO getMiPersonaVo() {
 		return miPersonaVo;
 	}
@@ -99,12 +116,12 @@ public class UsuarioBean {
 		this.miPersonaVo = miPersonaVo;
 	}
 
-	public String getMensaje() {
-		return mensaje;
+	public String getMensajeError() {
+		return mensajeError;
 	}
 
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
+	public void setMensajeError(String mensaje) {
+		this.mensajeError = mensaje;
 	}
 
 
@@ -125,6 +142,16 @@ public class UsuarioBean {
 
 	public void setDocumentos(ArrayList<String> documentos) {
 		this.documentos = documentos;
+	}
+
+
+	public String getMensajeExitoso() {
+		return mensajeExitoso;
+	}
+
+
+	public void setMensajeExitoso(String mensajeExitoso) {
+		this.mensajeExitoso = mensajeExitoso;
 	}
 
 	

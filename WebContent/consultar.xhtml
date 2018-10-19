@@ -15,7 +15,8 @@
 		      		<div class="row">
 		      			<div class="input-field">
 							<h1>Consultar Usuario</h1>
-							<h:outputText value="#{usuarioBean.mensaje}" class="red-text darken-1"/>
+							<h:outputText value="#{usuarioBean.mensajeError}" class="red-text darken-1"/>
+							<h:outputText value="#{usuarioBean.mensajeExitoso}" class="green-text" />
 		      			</div>
 		      			<div class="row col s6 offset-m7">
 		      				<div class="input-field col m6">
@@ -54,6 +55,4 @@
 	      	</div>
       	</h:form>
       </ui:define>
-
-
 </ui:composition>

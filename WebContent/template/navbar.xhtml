@@ -1,0 +1,31 @@
+
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<meta charset="UTF-8"/>
+	<title>#{tituloPagina}</title>
+	<link rel="stylesheet" href="resources/css/materialize.css"/>
+	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</h:head> 
+<body> 
+	 <ui:insert name="contenido"/>
+	 
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/materialize.js"></script>
+<script>
+	 document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('select');
+		  });
+	  
+	 $(document).ready(function(){
+		    $('select').formSelect();
+		  });
+</script>
+	 
+</body> 
+</html>
